@@ -16,7 +16,11 @@ export function Home() {
         data={groups}
         keyExtractor={item => item}
         renderItem={({ item }) => (
-          <Group name={item} isActive={groupSelected === item} onPress={() => setGroupSelected(item)} />
+          <Group 
+            name={item} 
+            isActive={groupSelected.toLocaleUpperCase() === item.toLocaleUpperCase()} 
+            onPress={() => setGroupSelected(item)} 
+          />
         )}
         horizontal
         showsHorizontalScrollIndicator={false}
