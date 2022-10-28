@@ -4,16 +4,24 @@ import backgroundImg from "@assets/background.png"
 import LogoSvg from "@assets/logo.svg"
 import { Input } from "@components/Input"
 import { Button } from "@components/Button"
+import { useNavigation } from "@react-navigation/native"
 
 export function SignUp() {
+  const navigation = useNavigation()
+
+  function handleGoBack() {
+    navigation.goBack()
+  }
+
   return (
     <ScrollView 
       contentContainerStyle={{ flexGrow: 1 }} 
       showsVerticalScrollIndicator={false}
     >
-      <VStack flex={1} bg="gray.700" px={10}>
+      <VStack flex={1} px={10}>
         <Image 
           source={backgroundImg} 
+          defaultSource={backgroundImg}
           alt="Background com pessoa treinando em uma academia" 
           resizeMode="contain" 
           position="absolute" 
@@ -45,7 +53,7 @@ export function SignUp() {
           <Button title="Criar e acessar" />
         </Center>
 
-        <Button title="Voltar para o login" variant="outline" my={24} />
+        <Button title="Voltar para o login" variant="outline" my={24} onPress={handleGoBack} />
       </VStack>
     </ScrollView>
   )
