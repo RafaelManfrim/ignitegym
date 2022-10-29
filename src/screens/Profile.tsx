@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { TouchableOpacity } from "react-native"
 import { Center, Heading, ScrollView, Skeleton, Text, VStack } from "native-base"
+import * as ImagePicker from "expo-image-picker"
 
 import { ScreenHeader } from "@components/ScreenHeader"
 import { UserPhoto } from "@components/UserPhoto"
@@ -11,6 +12,31 @@ const PHOTO_SIZE = 33
 
 export function Profile() {
   const [photoIsLoading, setPhotoIsLoading] = useState(false)
+  const [userPhoto, setUserPhoto] = useState("https://github.com/rafaelmanfrim.png")
+
+  async function handleUserPhotoSelect() {
+    setPhotoIsLoading(true)
+    try {
+      const photoSelected = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        quality: 1,
+        aspect: [4, 4],
+        allowsEditing: true,
+      })
+  
+      if (photoSelected.cancelled) {
+        return
+      }
+  
+      if (photoSelected.uri) {
+        setUserPhoto(photoSelected.uri)
+      }
+    } catch (err) {
+      console.log(err)
+    } finally {
+      setPhotoIsLoading(false)
+    }
+  }
 
   return (
     <VStack flex={1}>
@@ -27,13 +53,13 @@ export function Profile() {
             />
           ) : (
             <UserPhoto 
-              source={{ uri: "https://github.com/rafaelmanfrim.png" }} 
+              source={{ uri: userPhoto }} 
               size={PHOTO_SIZE}
               alt="Foto do usuário"
             />
           )}
 
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleUserPhotoSelect}>
             <Text color="green.500" fontSize="md" mb={8} mt={2} fontWeight="bold">
               Alterar foto
             </Text>
