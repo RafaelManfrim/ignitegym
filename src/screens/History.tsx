@@ -18,7 +18,7 @@ export function History() {
         sections={exercises}
         keyExtractor={item => item}
         renderSectionHeader={({ section: { title } }) => (
-          <Heading color="gray.300" fontSize="md" mt={10} mb={3}>
+          <Heading color="gray.300" fontSize="md" mt={10} mb={3} fontFamily="heading">
             {title}
           </Heading>
         )}

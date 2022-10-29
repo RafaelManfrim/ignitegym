@@ -84,6 +84,8 @@ export function SignIn() {
               onChangeText={field.onChange}
               value={field.value}
               errorMessage={formState.errors?.password?.message}
+              returnKeyType="send"
+              onSubmitEditing={handleSubmit(handleSignIn)}
             />
           )} />
 

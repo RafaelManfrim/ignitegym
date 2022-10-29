@@ -13,7 +13,7 @@ export function HistoryCard() {
       justifyContent="space-between"
     >
       <VStack>
-        <Heading color="white" fontSize="md" textTransform="capitalize">
+        <Heading color="white" fontSize="md" textTransform="capitalize" fontFamily="heading">
           Costas
         </Heading>
         <Text color="gray.100" fontSize="lg" numberOfLines={1}>Puxada frontal</Text>
